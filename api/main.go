@@ -6,6 +6,8 @@ import (
     "fmt"
     "time"
     "encoding/json"
+    _ "encoding/binary"
+    "strconv"
 
     "github.com/boltdb/bolt"
 )
@@ -40,26 +42,32 @@ func main() {
 
 		// generate next available ID
 		id, _ := bucket.NextSequence()
-		host.Id = int(id)
-
+		temp := int(id)
+		s := strconv.Itoa(temp)
+		host.Id = temp
 		buffer, err := json.Marshal(host)
 		if err != nil {
 			return err
 		}
 
-		// persist
-		// return bucket.Put(itob(host.ID), buffer)
-		return bucket.Put([]byte(host.Created.Format(time.RFC3339)), buffer)
+		// binaryId := make([]byte, 8)
+	 	// binary.BigEndian.PutUint64(binaryId, uint64(host.Id))
+
+		// persist, id as key
+		return bucket.Put([]byte(s), buffer)
+
+		// persist with date as key
+		// return bucket.Put([]byte(host.Created.Format(time.RFC3339)), buffer)
 	})
 
 	db.View(func(tx *bolt.Tx) error {
-    b := tx.Bucket([]byte("hosts"))
-    b.ForEach(func(k, v []byte) error {
-        fmt.Printf("key=%s, value=%s\n", k, v)
-        return nil
-    })
-    return nil
-})
+	    bucket := tx.Bucket([]byte("hosts"))
+	    bucket.ForEach(func(k, v []byte) error {
+	        fmt.Printf("key=%s, value=%s\n", k, v)
+	        return nil
+	    })
+	    return nil
+	})
 
 	router := NewRouter()
 	

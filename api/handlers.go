@@ -6,8 +6,8 @@ import (
     "encoding/json"
     "io"
     "io/ioutil"
-    "strconv"
-    "github.com/gorilla/mux"
+    _ "strconv"
+    _ "github.com/gorilla/mux"
 )
 
 func Root(w http.ResponseWriter, r *http.Request) {
@@ -21,31 +21,31 @@ func HostIndex(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK) // return 200
 
-	if err := json.NewEncoder(w).Encode(hosts); 
-	err != nil { 
-		panic(err)
-	}
+	// if err := json.NewEncoder(w).Encode(hosts); 
+	// err != nil { 
+	// 	panic(err)
+	// }
 }
 
 func HostShow(w http.ResponseWriter, r *http.Request) {
 	// listing details about a specific host
-	vars := mux.Vars(r)
-	var hostId int
-	var err error
+	// vars := mux.Vars(r)
+	// var hostId int
+	// var err error
 
-	if hostId, err = strconv.Atoi(vars["hostId"]); err != nil {
-		panic(err)
-	}
+	// if hostId, err = strconv.Atoi(vars["hostId"]); err != nil {
+	// 	panic(err)
+	// }
 
-	host := DbFindHost(hostId)
-	if host.Id > 0 {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(http.StatusOK)
-		if err := json.NewEncoder(w).Encode(host); err != nil {
-			panic(err)
-		}
-		return
-	}
+	// host := DbFindHost(hostId)
+	// if host.Id > 0 {
+	// 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	// 	w.WriteHeader(http.StatusOK)
+	// 	if err := json.NewEncoder(w).Encode(host); err != nil {
+	// 		panic(err)
+	// 	}
+	// 	return
+	// }
 	
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusNotFound)
@@ -71,10 +71,10 @@ func HostCreate(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	h := DbCreateHost(host)
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusCreated)
-	if err := json.NewEncoder(w).Encode(h); err != nil {
-		panic(err)
-	}
+	// h := DbCreateHost(host)
+	// w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	// w.WriteHeader(http.StatusCreated)
+	// if err := json.NewEncoder(w).Encode(h); err != nil {
+	// 	panic(err)
+	// }
 }
