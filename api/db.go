@@ -77,3 +77,33 @@ func DbDestroyHost(id int) error {
 
 	return fmt.Errorf("Unable to find Host with id of %d to delete", id)
 }
+
+
+
+
+// func (s *Store) CreateHost(h *Host) error {
+// 	return s.db.Update(func(tx *bolt.Tx) error{
+// 		// retrieve hosts bucket
+// 		bucket := tx.Bucket([]byte("hosts"))
+
+// 		// generate next available ID
+// 		// ignore err check as it cannot happen in an Update() per doc
+// 		id, _ = bucket.NextSequence()
+// 		h.ID = int(id)
+
+// 		buffer, err := json.Marshal(h)
+// 		if err != nil {
+// 			return err
+// 		}
+
+// 		// persist
+// 		return bucket.Put(itob(h.ID), buffer)
+// 	})
+// }
+
+// // itob returns an 8-byte big endian representation of v.
+// func itob(v int) []byte {
+//     b := make([]byte, 8)
+//     binary.BigEndian.PutUint64(b, uint64(v))
+//     return b
+// }

@@ -1,7 +1,7 @@
 package main
 	
 import (
-//	"time"
+	"time"
 )
 
 type jsonErr struct {
@@ -19,7 +19,7 @@ type Host struct {
 	Provider	string	`json:"provider"`
 	PrimaryIp	string	`json:"primary_ip"`
 	IataCode	string	`json:"iata_code"`
-
+	Created	time.Time 	`json:"created"`
 }
 
 type Hosts []Host
