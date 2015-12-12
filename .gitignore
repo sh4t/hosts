@@ -3,19 +3,13 @@
 
 # Project specific ignores
 
-dump.rdb
-junk/
-
+db/*.db
 api/api
 
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
 *.so
-
-# Sublime Text Editor project files
-wipes.sublime-workspace
-wipes.sublime-project
 
 # Folders
 _obj
