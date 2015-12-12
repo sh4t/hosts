@@ -4,6 +4,11 @@ import (
 //	"time"
 )
 
+type jsonErr struct {
+	Code int    `json:"code"`
+	Text string `json:"text"`
+}
+
 // defining our host model/struct
 // TODO: add sensors and secondary IPv4 and IPv6
 type Host struct {

@@ -17,4 +17,5 @@ var routes = Routes {
 	Route { "Index", "GET", "/", Root, },
 	Route { "HostIndex", "GET", "/hosts", HostIndex, },
 	Route { "HostShow", "GET", "/hosts/{hostId}", HostShow, },
+	Route { "HostCreate", "POST", "/hosts", HostCreate, },
 }
